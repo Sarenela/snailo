@@ -1,33 +1,39 @@
-import random
-# Ustawienia ekranu
-WIDTH = 900
-HEIGHT = 1000
-FPS = 30 #liczba kratek na sekundę
+import time
 
-#box settings
-BOX_WIDTH =130
-BOX_HEIGHT =130
-BOX_SEP =20
-
-# Kolory
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-PISTACHIO = (147,197,114)
-LIGHT_PISTACHIO = (210, 240, 180)
-PINK = (222,165,164)
-
-# metryki
-speed = 0
-score = 0
+import pygame,random
+from snailo.sprites import Box
+from settings import BOX_NUM,WIDTH,HEIGHT,PISTACHIO,BLACK
 
 
-#util methods:
-def draw6():
-    numbers = [0, 1, 2, 3, 4, 5]
-    drawn_numbers = set(random.sample(numbers, k=4))
-    number1 = random.choice(numbers)
-    number2 = random.choice(numbers)
-    drawn_numbers.add(number1)
-    drawn_numbers.add(number2)
-    return drawn_numbers
+#SCREEN
+def init_screen():
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    pygame.display.set_caption("supi dupi game")
+    return screen
+
+SCREEN = init_screen()
+
+def set_speed(value):
+    global SPEED
+    SPEED = value
+
+def set_curr_max(value):
+    global CURRENT_MAX
+    CURRENT_MAX = value
+
+#helper methods
+def draw_missing():
+    return set(random.sample(range(BOX_NUM +1), k=2))
+def create_box_wall():
+    missing = draw_missing()
+    boxes = pygame.sprite.Group()
+
+    width= (WIDTH - 10*BOX_NUM)/BOX_NUM
+
+    print(width)
+
+    for i in range(BOX_NUM):
+        if i not  in missing:
+            print(i)
+            boxes.add(Box( 10+ i *(width +10),0, width, width, random.randint(5, 50)))
+    return boxes
