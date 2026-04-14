@@ -1,6 +1,6 @@
 import pygame
 from snailo.settings import PINK, WIDTH, HEIGHT, BLACK, STEP
-import settings
+import snailo.settings
 
 
 class Player(pygame.sprite.Sprite):
@@ -11,14 +11,21 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (WIDTH / 2, HEIGHT / 2)
         self.score = 100
+        self.immune = False
+        self.immune_timer = 0
 
     def update(self):
         self.prev_rect = self.rect.copy()
         self.move()
         self.check_screen_collisions()
+        self._tick_immunity()
+
+    def _tick_immunity(self):
+        if self.immune and pygame.time.get_ticks() - self.immune_timer > settings.IMMUNITY_DURATION:
+            self.immune = False
+            settings.SPEED /= settings.CHERRY_SPEED_MULTIPLIER
 
     def move(self):
-        # Poruszanie gracza
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT]:
             self.rect.x -= STEP * settings.SPEED + 2
@@ -38,4 +45,3 @@ class Player(pygame.sprite.Sprite):
             self.rect.top = 0
         if self.rect.bottom > HEIGHT:
             self.rect.bottom = HEIGHT
-

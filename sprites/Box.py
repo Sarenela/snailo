@@ -1,6 +1,6 @@
 import pygame,random
-from snailo.settings import WHITE, HEIGHT,BOX_HEIGHT,BOX_WIDTH,BOX_SEP,WIDTH, BOX_NUM, PINK
-
+from snailo.settings import WHITE, HEIGHT, BOX_HEIGHT,BOX_WIDTH,BOX_SEP,WIDTH, BOX_NUM, PINK,STEP
+import snailo.settings
 
 pygame.init()
 class Box(pygame.sprite.Sprite):
@@ -21,7 +21,7 @@ class Box(pygame.sprite.Sprite):
         self.rect.y = y
 
     def update(self):
-        self.rect.y+=5
+        self.rect.y+=STEP*settings.SPEED
         self.update_text()
         if self.rect.y>HEIGHT:
             self.kill()
@@ -43,15 +43,18 @@ class Box(pygame.sprite.Sprite):
 
 def draw_missing():
     return random.sample(range(BOX_NUM +50), k=1)
-
-
 def create_box_wall():
     missing = draw_missing()
     boxes = pygame.sprite.Group()
-    width = (WIDTH - 10 * BOX_NUM) / BOX_NUM
+
+    width= (WIDTH - 10*BOX_NUM)/BOX_NUM
+
     print(width)
+
     for i in range(BOX_NUM):
         if not i == missing:
             print(i)
-            boxes.add(Box(10 + i * (width + 10), -width, width, width, random.randint(5, 50)))
+            boxes.add(Box( 10+ i *(width +10),-width, width, width, random.randint(5, 50)))
     return boxes
+
+

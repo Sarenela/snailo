@@ -1,7 +1,7 @@
 import pygame
 import random
-from snailo.settings import WHITE, HEIGHT, WIDTH, PROBABILITY_WALL, BOTTLE_GREEN, STEP
-import settings
+from snailo.settings import WHITE, HEIGHT, WIDTH, STEP, PEACH, BOTTLE_GREEN, PROBABILITY_WALL
+import snailo.settings
 
 class Wall(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height):
@@ -13,9 +13,10 @@ class Wall(pygame.sprite.Sprite):
         self.rect.y = y
 
     def update(self):
-        self.rect.y += STEP * settings.SPEED
-        if self.rect.y > HEIGHT:
+        self.rect.y+=STEP*settings.SPEED
+        if self.rect.y>HEIGHT:
             self.kill()
+
 
 
 def create_walls(boxes, walls, apples):
@@ -29,6 +30,5 @@ def create_walls(boxes, walls, apples):
                 not pygame.sprite.spritecollide(wall, apples, False):
             walls.add(wall)
     return walls
-
 
 
