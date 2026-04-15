@@ -1,7 +1,7 @@
 import pygame
 import random
 from snailo.settings import WHITE, HEIGHT, WIDTH, STEP, PEACH, BOTTLE_GREEN, PROBABILITY_WALL
-import snailo.settings
+import snailo.settings as settings
 
 class Wall(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height):

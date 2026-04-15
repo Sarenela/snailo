@@ -1,6 +1,6 @@
 import pygame,random
 from snailo.settings import WHITE, HEIGHT, BOX_HEIGHT,BOX_WIDTH,BOX_SEP,WIDTH, RED, STEP, PROBABILITY_APPLES
-import snailo.settings
+import snailo.settings as settings
 
 class Apple(pygame.sprite.Sprite):
     def __init__(self, x, y):

@@ -1,6 +1,6 @@
 import pygame
 from snailo.settings import PINK, WIDTH, HEIGHT, BLACK, STEP
-import snailo.settings
+import snailo.settings as settings
 
 
 class Player(pygame.sprite.Sprite):
@@ -13,6 +13,7 @@ class Player(pygame.sprite.Sprite):
         self.score = 100
         self.immune = False
         self.immune_timer = 0
+        self.cherry_count = 0
 
     def update(self):
         self.prev_rect = self.rect.copy()
@@ -35,6 +36,13 @@ class Player(pygame.sprite.Sprite):
             self.rect.y -= STEP * settings.SPEED * +2
         if keys[pygame.K_DOWN]:
             self.rect.y += STEP * settings.SPEED * +2
+
+    def activate_cherry(self):
+        if self.cherry_count > 0 and not self.immune:
+            self.cherry_count -= 1
+            settings.SPEED *= settings.CHERRY_SPEED_MULTIPLIER
+            self.immune = True
+            self.immune_timer = pygame.time.get_ticks()
 
     def check_screen_collisions(self):
         if self.rect.left < 0:

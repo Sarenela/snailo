@@ -8,7 +8,7 @@ from settings import BOX_NUM,WIDTH,HEIGHT,PISTACHIO,BLACK
 #SCREEN
 def init_screen():
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
-    pygame.display.set_caption("supi dupi game")
+    pygame.display.set_caption("snailo")
     return screen
 def game_over():
     # Clear the SCREEN

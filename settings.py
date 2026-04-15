@@ -4,7 +4,7 @@ import pygame
 #hydra
 # Ustawienia ekranu
 WIDTH = 800
-HEIGHT = 900
+HEIGHT = 700
 FPS = 30 #liczba kratek na sekundę
 
 #box settings
@@ -25,6 +25,7 @@ BOTTLE_GREEN = (0, 106, 78)
 
 
 CURRENT_MAX=100
+MUTED = False
 
 # metryki
 SPEED = 1

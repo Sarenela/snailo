@@ -1,6 +1,6 @@
 import pygame,random
 from snailo.settings import WHITE, HEIGHT, BOX_HEIGHT,BOX_WIDTH,BOX_SEP,WIDTH, BOX_NUM, PINK,STEP
-import snailo.settings
+import snailo.settings as settings
 
 pygame.init()
 class Box(pygame.sprite.Sprite):

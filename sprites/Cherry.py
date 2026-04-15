@@ -1,6 +1,6 @@
 import pygame, random
 from snailo.settings import HEIGHT, WIDTH, STEP
-import snailo.settings
+import snailo.settings as settings
 
 class Cherry(pygame.sprite.Sprite):
     def __init__(self, x, y):
